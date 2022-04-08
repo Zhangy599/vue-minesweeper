@@ -17,6 +17,14 @@ const state = reactive(Array.from({ length: HEIGHT }, (_, y) => {
 function onClick(x: number, y: number) {
   console.log(x, y)
 }
+
+function generateMines() {
+  for (const row of state) {
+    for (const block of row)
+      block.mine = Math.random() < 0.3
+  }
+}
+generateMines()
 </script>
 
 <template>
@@ -32,7 +40,7 @@ function onClick(x: number, y: number) {
         hover:bg-gray
         @click="onClick(x, y)"
       >
-        {{ item }}
+        {{ item.mine ? 'x' : '1' }}
       </button>
     </div>
   </div>
